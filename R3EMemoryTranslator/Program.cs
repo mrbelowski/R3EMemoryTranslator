@@ -19,7 +19,7 @@ namespace R3EMemoryTranslator
         // fields to be mapped in the root struct
         static String[] Mappings = { "EngineRps", "NumberOfLaps", "Position", "ControlType", "CarSpeed", "MaxEngineRps", "Gear", "CarCgLocation", 
                                    "CarOrientation", "LocalAcceleration", "FuelLeft", "FuelCapacity", "FuelPressure", "EngineOilPressure", "ThrottlePedal",
-                                   "BrakePedal", "ClutchPedal", "BrakeTemp", "TireTemp", "LapTimePreviousSelf", "LapTimeCurrentSelf", "LapTimeBestSelf", 
+                                   "BrakePedal", "ClutchPedal", "LapTimePreviousSelf", "LapTimeCurrentSelf", "LapTimeBestSelf", 
                                    "TimeDeltaFront", "TimeDeltaBehind", "CutTrackWarnings" };
 
         // Byte offsets of fields we're going to map, initialised when we start the app
@@ -78,9 +78,7 @@ namespace R3EMemoryTranslator
             fieldLengths.Add("PDAngularAcceleration", 24); 
 
             fieldLengths.Add("CarCgLocation", 12); 
-            fieldLengths.Add("LocalAcceleration", 12); 
-            fieldLengths.Add("BrakeTemp", 12); 
-            fieldLengths.Add("TireTemp", 48);
+            fieldLengths.Add("LocalAcceleration", 12);
         }
 
         static void createStructPositionMappings()
@@ -175,7 +173,7 @@ namespace R3EMemoryTranslator
 
         static int GetNewPlayerDataFieldOffset(string fieldName)
         {
-            return Marshal.OffsetOf(typeof(NewStruct.PlayerData), fieldName).ToInt32();  
+            return Marshal.OffsetOf(typeof(NewStruct.PlayerData), fieldName).ToInt32();
         }
 
         static int GetOldFieldOffset(string fieldName)
@@ -187,7 +185,6 @@ namespace R3EMemoryTranslator
         {
             return Marshal.OffsetOf(typeof(OldStruct.PlayerData), fieldName).ToInt32();  
         }
-
         // TODO: offsets of fields in other nested structures.
     }
 }
